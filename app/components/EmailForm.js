@@ -85,15 +85,15 @@ const EmailForm = ({setDataQuestions,dataQuestions,setQuestions,questions,setSho
             {error ? <Alert variant={'danger'}>
             All fields are required, please fill in the missing ones.
             </Alert> : null}
-            <Form onSubmit={send} noValidate validated={validated}>
+            <Form name='fm-email' onSubmit={send} noValidate validated={validated}>
                 <div className={'formEmail'}>
                     <Col>
-                        <Form.Group
-                            controlId="name">
+                        <Form.Group>
                             <Form.Label>
                                 {mainData.emailFormUserNameLabel}
                             </Form.Label>
                             <Form.Control
+                            id='username-emailform'
                                 type="text"
                                 placeholder={mainData.emailFormUserNamePlaceholder}
                                 name="userName"
@@ -164,6 +164,7 @@ const EmailForm = ({setDataQuestions,dataQuestions,setQuestions,questions,setSho
                                 {mainData.emailFormSubjectPlaceholder}
                             </Form.Label>
                             <Form.Control
+                            id="subject-emailform"
                                 onChange={handleChange}
                                 as="input"
                                 type="text"
@@ -181,6 +182,7 @@ const EmailForm = ({setDataQuestions,dataQuestions,setQuestions,questions,setSho
           <Form.Group>
             <Form.Label> {key.questions} </Form.Label>
             <Form.Control
+            id="message-emailform"
               onChange={handleQuestions}
               as="textarea"
               type="text-area"
@@ -203,6 +205,7 @@ const EmailForm = ({setDataQuestions,dataQuestions,setQuestions,questions,setSho
             </Form>
             <div className={'container buttons-container-email-form'}>
                 <Button
+                 id="sendButton-emailform"
                     type={'submit'}
                     className={'button-email-form'}
                     variant={'dark'}
@@ -210,6 +213,7 @@ const EmailForm = ({setDataQuestions,dataQuestions,setQuestions,questions,setSho
                     {emailData.sendButton? 'please enter a send-button text on your dashboard':'Send'}
                 </Button>
                 <Button
+                 id="backButton-emailform"
                     className={'button-email-form'}
                     variant={'dark'}
                     onClick={back}>

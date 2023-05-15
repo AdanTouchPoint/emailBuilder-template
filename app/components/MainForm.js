@@ -10,8 +10,9 @@ import ThankYou from "./ThankYou";
 import Card from "react-bootstrap/cjs/Card";
 import { Link, animateScroll as scroll } from "react-scroll";
 import { fetchRepresentatives } from "../assets/petitions/fetchRepresentatives";
-
+import ProgressBar from "./ProgressBar";
 const MainForm = ({
+  leads,
   dataUser,
   setDataUser,
   mp,
@@ -62,18 +63,20 @@ const MainForm = ({
 
   const click = async (e) => {
     e.preventDefault();
-
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    const isValidEmail = (email) => {
+      return emailRegex.test(email);
+    };
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     }
     setValidated(true);
-    if (tac === false || zipCode.trim() === "" || emailUser.trim() === "") {
+    if (tac === false || zipCode.trim() === "" || isValidEmail(emailUser) === false) {
       setError(true);
       return;
     }
-
     setShowLoadSpin(true);
     setError(false);
     fetchRepresentatives(
@@ -90,7 +93,6 @@ const MainForm = ({
 
     scroll.scrollToBottom();
   };
-
   if (!mainData) return "loading datos";
   if (!mp) return "loading datos";
   console.log("Main page data", mainData);
@@ -117,6 +119,10 @@ const MainForm = ({
           </Card.Body>
         </Card.ImgOverlay>
       </Card>
+      <ProgressBar
+            leads={leads}
+            mainData={mainData}
+            />
       <div className={"container instructions"}>{mainData.instruction}</div>
       <div className={"form-container"}>
         <div hidden={showFindForm} className={"container container-content"}>
@@ -134,10 +140,11 @@ const MainForm = ({
             offset={-70}
             duration={500}
           ></Link>
-          <Form onSubmit={click} noValidate validated={validated}>
+          <Form name='fm-find' onSubmit={click} noValidate validated={validated}>
             <h3 className="find-her-mp-text">{mainData.firstFormLabel1}</h3>
             <Form.Group>
               <Form.Control
+              id="emailInput-mainForm"
                 type="email"
                 placeholder={mainData.firstFormPlaceholder1}
                 name="emailUser"
@@ -148,6 +155,7 @@ const MainForm = ({
             <Form.Group>
               <p className="select-label">{mainData.firstFormLabel2}</p>
               <Form.Control
+               id="postalcodeInput-mainForm"
                 type="text"
                 placeholder={mainData.firstFormPlaceholder2}
                 name="zipCode"
@@ -175,6 +183,7 @@ const MainForm = ({
             </Form.Group>
             <Form.Group>
               <Button
+              id="findButton-mainForm"
                 type={"submit"}
                 variant={"dark"}
                 size={"lg"}

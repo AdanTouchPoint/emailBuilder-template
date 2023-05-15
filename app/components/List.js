@@ -29,6 +29,7 @@ const List = ({mps, dataUser,  setEmailData,  setShowFindForm, setShowEmailForm,
                     {
                         mps.twitter && mps.clientId?.plan !== 'basic'?
                         <Button
+                        id="tweetList-button"
                             className='list-button'
                             size={'sm'}
                             variant={'dark'}
@@ -44,6 +45,7 @@ const List = ({mps, dataUser,  setEmailData,  setShowFindForm, setShowEmailForm,
                     {
                         mps.email ?
                             <Button
+                            id="emailList-button"
                                 className='list-button'
                                 size={'sm'}
                                 variant={'dark'}
@@ -59,6 +61,7 @@ const List = ({mps, dataUser,  setEmailData,  setShowFindForm, setShowEmailForm,
                     {
                         mps.phone  && mps.clientId?.plan !== 'basic' ?
                             <Button
+                            id="callList-button"
                                 className='list-button'
                                 size={'sm'}
                                 variant={'dark'}
