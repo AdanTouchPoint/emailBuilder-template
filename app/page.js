@@ -98,6 +98,7 @@ function Home() {
       {
         !loading && (
           <MainForm
+              setLeads={setLeads}
               leads={leads}
               setEmailData={setEmailData}
               emailData={emailData}

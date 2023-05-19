@@ -13,6 +13,7 @@ import { fetchRepresentatives } from "../assets/petitions/fetchRepresentatives";
 import ProgressBar from "./ProgressBar";
 const MainForm = ({
   leads,
+  setLeads,
   dataUser,
   setDataUser,
   mp,
