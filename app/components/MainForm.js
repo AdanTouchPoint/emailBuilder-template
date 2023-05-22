@@ -234,7 +234,7 @@ const MainForm = ({
                 </Alert>
               )}
             </div>
-            <h2>{mainData.positionName}</h2>
+            <h2>{mainData.senatorLabel}</h2>
             <div className="representatives-container">
               {senator.length > 0 ? (
                 senator.map((mps, index) => (
