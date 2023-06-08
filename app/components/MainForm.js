@@ -44,7 +44,7 @@ const MainForm = ({
   const [error, setError] = useState(false);
   const [showThankYou, setShowThankYou] = useState(true);
   const [tac, setTac] = useState(false);
-
+const {formFields} = mainData
   const handleTerms = (e) => {
     if (e.target.checked === true) {
       setTac(true);
@@ -60,21 +60,31 @@ const MainForm = ({
       [e.target.name]: e.target.value,
     });
   };
-  const { zipCode, emailUser } = dataUser;
-
-  const click = async (e) => {
-    e.preventDefault();
+  const fieldValidator = () => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     const isValidEmail = (email) => {
       return emailRegex.test(email);
     };
+    for (let key in dataUser) {
+      console.log(key)
+      let value = dataUser[key];
+      if(value === '') return false
+      if (key === 'emailUser') {
+        let value = dataUser[key];
+       if (isValidEmail(value) === false ) return false
+      }
+    }
+  }
+  const click = async (e) => {
+    e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     }
     setValidated(true);
-    if (tac === false || zipCode.trim() === "" || isValidEmail(emailUser) === false) {
+    if ( fieldValidator() === false || 
+    tac  === false ) {
       setError(true);
       return;
     }
@@ -85,7 +95,7 @@ const MainForm = ({
       backendURLBase,
       endpoints.toGetRepresentativesByCp,
       clientId,
-      `&postcode=${dataUser.zipCode}`,
+      `&postcode=${dataUser.postalCode}`,
       setMp,
       setSenator,
       setShowLoadSpin,
@@ -101,6 +111,7 @@ const MainForm = ({
   console.log("senator data", senator);
   console.log("tweets", tweet);
   console.log("TYPdata", typData);
+  console.log("userdata", dataUser);
   return (
     <div className={"contenedor main-form-flex-container"}>
       <Card className="bg-dark card-img text-white main-image-container">
@@ -143,28 +154,59 @@ const MainForm = ({
           ></Link>
           <Form name='fm-find' onSubmit={click} noValidate validated={validated}>
             <h3 className="find-her-mp-text">{mainData.firstFormLabel1}</h3>
-            <Form.Group>
-              <Form.Control
-              id="emailInput-mainForm"
-                type="email"
-                placeholder={mainData.firstFormPlaceholder1}
-                name="emailUser"
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <Form.Group>
-              <p className="select-label">{mainData.firstFormLabel2}</p>
-              <Form.Control
-               id="postalcodeInput-mainForm"
-                type="text"
-                placeholder={mainData.firstFormPlaceholder2}
-                name="zipCode"
-                onChange={handleChange}
-                required
-                maxLength="5"
-              />
-            </Form.Group>
+            <div className="fields-form">
+            {formFields.map((field, key) => {
+              console.log(field, key);
+              return field.type !== "state" ? (
+                  <Form.Group className="field" key={key}>
+                    <Form.Label className="select-label">{field.label}</Form.Label>
+                    <Form.Control
+                      id="emailInput-mainForm"
+                      type={field.type}
+                      placeholder={field.placeholder}
+                      name={field.type}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+            
+              ) : (
+states.length > 0 ? 
+<Form.Group className={"field"} key={key}>
+<Form.Label className="select-label">{field.label}</Form.Label>
+ <Form.Select
+   aria-label="DefaulValue"
+   required
+   name={field.type}
+   id="stateSelect-mainForm"
+   onChange={handleChange}
+ >
+   <option key={"vacio"} value={""}>
+     {field.placeholder}
+   </option>
+   {states.sort().map((estate) => (
+     <option key={estate} value={estate}>
+       {estate}
+     </option>
+   ))}
+ </Form.Select>
+</Form.Group> 
+:
+   <Form.Group className="field" key={key}>
+   <Form.Label className="select-label">{field.label}</Form.Label>
+   <Form.Control
+     id="emailInput-mainForm"
+     type={field.type}
+     placeholder={field.placeholder}
+     name={field.type}
+     onChange={handleChange}
+     required
+   />
+ </Form.Group>
+
+              );
+            })}
+            </div>
             <Form.Group style={{ textAlign: "justify" }} controlId="conditions">
               <Form.Check
                 name="conditions"

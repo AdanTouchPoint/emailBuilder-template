@@ -11,7 +11,7 @@ export const formater = async(data) =>{
     specificdata.header?.mainSubtitle ? formatedData.subtitle = specificdata.header.mainSubtitle : ''
     specificdata.header?.instructions ? formatedData.instruction = specificdata.header.instructions : ''
     specificdata.form?.['Find Button'] ? formatedData.findBtnText = specificdata.form?.['Find Button'] : ''
-    specificdata.form?.labelOne ? formatedData.firstFormLabel1 = specificdata.form?.labelOne : ''
+    specificdata.form?.formFields ? formatedData.formFields = specificdata.form?.formFields : ''
     specificdata.form?.labelTwo ? formatedData.firstFormLabel2 = specificdata.form?.labelTwo : ''
     specificdata.form?.placeholderTwo ? formatedData.firstFormPlaceholder2 = specificdata.form?.placeholderTwo : ''
     specificdata.form?.placeholderOne ? formatedData.firstFormPlaceholder1 = specificdata.form?.placeholderOne : ''

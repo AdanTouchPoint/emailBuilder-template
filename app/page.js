@@ -15,9 +15,7 @@ function Home() {
     userName: ''
   })
   const [dataUser, setDataUser] = useState({
-    zipCode: '',
-    userEmail: '',
-    subject:'',//'The Subject Line is Pre-Filled and can be Edited',
+
       })
       const [backendURLBase] = useState(`${process.env.NEXT_PUBLIC_URL}`)
       const [backendURLBaseServices] = useState(`${process.env.NEXT_PUBLIC_URL_SERVICES}`)
