@@ -9,8 +9,17 @@ import { fetchTweet } from './assets/petitions/fetchTweet';
 import { fetchTYM } from './assets/petitions/fetchTYM';
 import { fetchMainContent } from './assets/petitions/fetchMainContent';
 import { fetchAllLeads } from './assets/petitions/fetchLeads';
+import { fetchConfig } from './assets/petitions/fetchConfig';
+
 //require('dotenv').config()
 function Home() {
+  const [configurations , setConfigurations]= useState({
+    lenguage: "es",
+    SearchBy:"state",
+    sendMany: false,
+    hasQuestions: false,
+    region: "mx"
+  })
   const [emailData, setEmailData] = useState({
     userName: ''
   })
@@ -21,6 +30,10 @@ function Home() {
       const [backendURLBaseServices] = useState(`${process.env.NEXT_PUBLIC_URL_SERVICES}`)
       const [clientId] = useState(`${process.env.NEXT_PUBLIC_CLIENT_ID}`)
       const [endpoints] = useState({
+        toGetConfs:'/confs/',
+        toGetRepresentativesPerStates:'/representatives-state/',
+        toGetRepresentativesPerParty:'/representatives-party/',
+        toGetAllRepresentatives:'/all-senators/',
         toGetRepresentativesByCp:'/find-mp/',
         toGetQuestions:'/questions/',
         toGetMainData:'/main/',
@@ -28,7 +41,8 @@ function Home() {
         toGetTweets:'/tweets/',
         toSaveLeads:'/leads/',
         toSendEmails:'/email-builder/',
-        toGetAllLeads:'/leads/'
+        toGetAllLeads:'/leads/',
+        toSendEmailBatch:'/email-batch/'
       })
     const [mp, setMp] = useState([])
     const [senator, setSenator] = useState([])
@@ -66,11 +80,13 @@ function Home() {
       repeatButtonTyp : 'Please fill in this field on the dashboard',
     })
     const [loading, setLoading] = useState(true)
+    const [allDataIn, setAllDataIn] = useState([])
    // const adanCID ='636dadcf2626f92aade6664a'
     useEffect(() => {
 
         async function fetchData() {
           await Promise.all([
+            fetchConfig('GET', backendURLBase, endpoints.toGetConfs, clientId, setConfigurations),
             fetchAllLeads('GET', backendURLBase, endpoints.toGetAllLeads, clientId, setLeads),
             fetchMainContent('GET', backendURLBase, endpoints.toGetMainData, clientId, '', setMainData),
             //fetchEmailData('GET', backendURLBase, endpoints.toGetQuestions, clientId, "", setDataUser),
@@ -96,6 +112,7 @@ function Home() {
       {
         !loading && (
           <MainForm
+              configurations={configurations}
               setLeads={setLeads}
               leads={leads}
               setEmailData={setEmailData}
@@ -118,6 +135,8 @@ function Home() {
               setDataQuestions={setDataQuestions}
               questions={questions}
               setQuestions={setQuestions}
+              allDataIn={allDataIn}
+              setAllDataIn={setAllDataIn}
           />
 
         )
