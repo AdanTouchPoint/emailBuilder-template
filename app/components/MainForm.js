@@ -157,7 +157,7 @@ const {formFields} = mainData
   console.log("senator data", senator);
   console.log("tweets", tweet);
   console.log("TYPdata", typData);
-  console.log("userdata", dataUser);
+  console.log("userdata", emailData);
   return (
     <div className={"contenedor main-form-flex-container"}>
       <Card className="bg-dark card-img text-white main-image-container">
