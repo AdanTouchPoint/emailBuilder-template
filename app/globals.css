@@ -50,7 +50,7 @@ code {
   margin-bottom: 50px;
 }
 .find-her-mp-text{
-  padding: 20px 0;
+  padding: 0px 0;
 }
 .fields-form {
   display:flex;
@@ -200,10 +200,10 @@ display: flex;
     display: block;
   }
   .text{
-    font-size: 25px;
+    font-size: 23px;
   }
   .text2 {
-    font-size: 25px;
+    font-size: 19px;
   }
   .typ-content{
     min-width: auto;
@@ -213,6 +213,11 @@ display: flex;
     padding:30px;
     row-gap: 20px;
 
+  }
+  .field {
+    justify-content: center;
+    width:100%;
+    text-align: left;
   }
   h3 > .typ-content{
     line-height: 1.7em !important;
