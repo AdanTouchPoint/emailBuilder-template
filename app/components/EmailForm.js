@@ -76,7 +76,6 @@ const EmailForm = ({
     setError(false);
     if(configurations.sendMany === "Si") {
       const payload = await fetchData('GET', backendURLBaseServices, endpoints.toSendEmailBatch, clientId, `to=${allDataIn}&subject=${dataUser.subject}&firstName=${dataUser.userName}&emailData=${dataUser.emailUser}&text=${dataUser.text.replace(/\n\r?/g, "<br/>")}`)
-      console.log(payload.success)
       setShowLoadSpin(false)
       if (payload.success === true) {
           fetchLeads(true, backendURLBase, endpoints, clientId, dataUser, emailData)
@@ -107,7 +106,6 @@ const EmailForm = ({
       clientId,
       `questions=${urlEncode(JSON.stringify(questions))}&user=${urlEncode(JSON.stringify(dataUser))}`
     );
-    console.log(payload.success);
     setShowLoadSpin(false);
     if (payload.success === true) {
       fetchLeads(
@@ -200,7 +198,6 @@ const EmailForm = ({
                 as={"input"}
                 readOnly
                 type="text"
-                s
                 placeholder={emailData.name}
                 name="nameTo"
               />

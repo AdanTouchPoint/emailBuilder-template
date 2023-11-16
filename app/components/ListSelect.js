@@ -16,7 +16,6 @@ const ListSelect = ({setAllDataIn, mp, dataUser,  setEmailData,  setShowFindForm
     const click = async() => {
       const selectedMps = await mp.filter((mps, index) => checklistStates[index]);
       const emails = await selectedMps.map((mp) => mp.email ? mp.email : mp.contact);
-      console.log(emails, 'allDataIn')
       if(checklistStates.every(state => !state)){
         handleShow();
         setShowEmailForm(true);

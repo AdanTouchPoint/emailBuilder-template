@@ -4,7 +4,6 @@ const fetchRepresentatives = async (petitionMethod, backendURLBase, endpoint, cl
     const datos = await fetchData(petitionMethod, backendURLBase, endpoint, clientId, params)
     if(sendMany === "Si") {
       const emails = await mailerExtracter(datos.data)
-      console.log(emails)
       setAllDataIn(emails)
       setMp(datos.data)
       setShowLoadSpin(false)

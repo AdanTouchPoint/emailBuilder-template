@@ -69,7 +69,6 @@ const {formFields} = mainData
       return emailRegex.test(email.trim());
     };
     for (let key in dataUser) {
-      console.log(key)
       let value = dataUser[key];
       if(value === '') return false
       if (key === 'emailUser') {
@@ -152,12 +151,7 @@ const {formFields} = mainData
   };
   if (!mainData) return "loading datos";
   if (!mp) return "loading datos";
-  console.log("Main page data", mainData);
-  console.log("Dataquestions", dataQuestions);
-  console.log("senator data", senator);
-  console.log("tweets", tweet);
-  console.log("TYPdata", typData);
-  console.log("userdata", emailData);
+
   return (
     <div className={"contenedor main-form-flex-container"}>
       <Card className="bg-dark card-img text-white main-image-container">
@@ -201,7 +195,6 @@ const {formFields} = mainData
             <h3 className="find-her-mp-text">{mainData.firstFormLabel1}</h3>
             <div className="fields-form">
             {formFields.map((field, key) => {
-              console.log(field, key);
               return field.type !== "state" ? (
                   <Form.Group className="field" key={key}>
                     <Form.Label className="select-label">{field.label}</Form.Label>
@@ -375,7 +368,6 @@ states.length > 0 ?
   </div>
   <h2>{mainData.positionName}</h2>
   <div className="representatives-container">
-    {console.log(mp)}
     {mp.length > 0 ? (
       configurations.filter === 'party' ? mp.filter((el)=> el.party === 'ALP').map((mps, index) => (
         <List
