@@ -10,7 +10,7 @@ const List = ({
   tweet,
 }) => {
   const decoder = urlEncode(tweet);
-  const tweetText = `.${mps.twitter} ${decoder}`;
+  const tweetText = `.${mps?.twitter} ${decoder}`;
   const click = (e) => {
     e.preventDefault();
     setEmailData({
@@ -24,16 +24,16 @@ const List = ({
     <div className={"buttonsContainer"}>
       <div className={"list-content-location"}>
         <div>
-          <h3 className="capitalize-style"> {mps.name} </h3>
+          <h3 className="capitalize-style"> {mps?.name} </h3>
           <p>
-            State: {mps.state ? mps.state : " ---"}, Party:
-            {mps.party ? mps.party : " ---"}
+            State: {mps?.state ? mps?.state : " ---"}, Party:
+            {mps?.party ? mps?.party : " ---"}
           </p>
         </div>
       </div>
       <div className={"buttons"}>
         <div>
-          {mps.twitter && mps.clientId?.plan !== "basic" ? (
+          {mps?.twitter && mps?.clientId?.plan !== "basic" ? (
             <Button
               id="tweetList-button"
               className="list-button"
@@ -49,7 +49,7 @@ const List = ({
           )}
         </div>
         <div>
-          {mps.email ? (
+          {mps?.email ? (
             <Button
               id="emailList-button"
               className="list-button"
@@ -65,7 +65,7 @@ const List = ({
           )}
         </div>
         <div>
-          {mps.phone && mps.clientId?.plan !== "basic" ? (
+          {mps?.phone && mps?.clientId?.plan !== "basic" ? (
             <Button
               id="callList-button"
               className="list-button"

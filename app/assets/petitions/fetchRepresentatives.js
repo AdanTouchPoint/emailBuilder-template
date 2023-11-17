@@ -5,7 +5,7 @@ const fetchRepresentatives = async (petitionMethod, backendURLBase, endpoint, cl
     if(sendMany === "Si") {
       const emails = await mailerExtracter(datos.data)
       setAllDataIn(emails)
-      setMp(datos.data)
+      setMp(datos.mpEmails)
       setShowLoadSpin(false)
       setShowList(false)
       return
@@ -14,8 +14,8 @@ const fetchRepresentatives = async (petitionMethod, backendURLBase, endpoint, cl
     let fill = await query.map((el) => {
       return el[0];
     });
-    setMp(fill);
-    setSenator(datos.statesFilter)
+    setMp(datos.mpEmails);
+    setSenator(datos.data)
     setShowLoadSpin(false)
     setShowList(false)
 
