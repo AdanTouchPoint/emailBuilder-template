@@ -5,13 +5,11 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/cjs/Button";
 import Alert from "react-bootstrap/Alert";
 import List from "./List";
-import ListSelect from "./ListSelect";
 import EmailForm from "./EmailForm";
 import ThankYou from "./ThankYou";
 import Card from "react-bootstrap/cjs/Card";
 import { Link, animateScroll as scroll } from "react-scroll";
 import { fetchRepresentatives } from "../assets/petitions/fetchRepresentatives";
-import ProgressBar from "./ProgressBar";
 const MainForm = ({
   leads,
   setLeads,
@@ -170,7 +168,6 @@ const MainForm = ({
           </Card.Body>
         </Card.ImgOverlay>
       </Card>
-      <ProgressBar leads={leads} mainData={mainData} />
       <div className={"container instructions"}>{mainData.instruction}</div>
       <div className={"form-container"}>
         <div hidden={showFindForm} className={"container container-content"}>

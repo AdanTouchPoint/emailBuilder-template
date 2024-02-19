@@ -69,7 +69,7 @@ const EmailForm = ({
       e.stopPropagation();
     }
     setValidated(true);
-    if (userName.trim() === "" || subject.trim() === "") {
+    if (userName?.trim() === "" || subject?.trim() === "") {
       setError(true);
       return;
     }

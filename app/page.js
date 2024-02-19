@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MainForm from "./components/MainForm";
 import LoadingMainForm from './components/LoadingMainForm';
 import { fetchQuestions } from './assets/petitions/fetchQuestions';
-import { fetchStatesData } from './assets/petitions/fetchStatesData';
 import { fetchTweet } from './assets/petitions/fetchTweet';
 import { fetchTYM } from './assets/petitions/fetchTYM';
 import { fetchMainContent } from './assets/petitions/fetchMainContent';
@@ -87,7 +86,6 @@ function Home() {
         async function fetchData() {
           await Promise.all([
             fetchConfig('GET', backendURLBase, endpoints.toGetConfs, clientId, setConfigurations),
-            fetchAllLeads('GET', backendURLBase, endpoints.toGetAllLeads, clientId, setLeads),
             fetchMainContent('GET', backendURLBase, endpoints.toGetMainData, clientId, '', setMainData),
             //fetchEmailData('GET', backendURLBase, endpoints.toGetQuestions, clientId, "", setDataUser),
             //fetchStatesData('GET', backendURLBase, endpoints.toGetAllRepresentatives, clientId, '', setStates),
@@ -113,8 +111,6 @@ function Home() {
         !loading && (
           <MainForm
               configurations={configurations}
-              setLeads={setLeads}
-              leads={leads}
               setEmailData={setEmailData}
               emailData={emailData}
               dataUser={dataUser}
