@@ -147,8 +147,6 @@ const MainForm = ({
     }
   };
   if (!mainData) return "loading datos";
-  if (!mp) return "loading datos";
-
   return (
     <div className={"contenedor main-form-flex-container"}>
       <Card className="bg-dark card-img text-white main-image-container">

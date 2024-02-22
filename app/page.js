@@ -30,7 +30,7 @@ function Home() {
       const [clientId] = useState(`${process.env.NEXT_PUBLIC_CLIENT_ID}`)
       const [endpoints] = useState({
         toGetConfs:'/confs/',
-        toGetRepresentativesPerStates:'/demo-test-state/',
+        toGetRepresentativesPerStates:'/find-mp-demo/',
         toGetRepresentativesPerParty:'/representatives-party/',
         toGetAllRepresentatives:'/all-senators/',
         toGetRepresentativesByCp:'/find-mp-demo/',
