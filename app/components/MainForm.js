@@ -304,8 +304,8 @@ const MainForm = ({
             ></Link>
           <h2>{mainData.positionName}</h2>
             <div className="representatives-container">
-              {mp.length > 0 ? (
-                mp.map((mps, index) => (
+              {mp?.length > 0 ? (
+                mp?.map((mps, index) => (
                   <List
                     setShowEmailForm={setShowEmailForm}
                     setShowFindForm={setShowFindForm}
@@ -328,8 +328,8 @@ const MainForm = ({
             </div>
             <h2>{mainData.senatorLabel}</h2>
             <div className="representatives-container">
-              {senator.length > 0 ? (
-                senator.map((mps, index) => (
+              {senator?.length > 0 ? (
+                senator?.map((mps, index) => (
                   <List
                     setShowEmailForm={setShowEmailForm}
                     setShowFindForm={setShowFindForm}
